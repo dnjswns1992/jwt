@@ -1,0 +1,66 @@
+/* 기본 스타일 초기화 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f7f7f7;
+}
+
+.container {
+    display: flex;
+}
+
+.sidebar {
+    background-color: #2c3e50;
+    color: white;
+    width: 200px;
+    height: 100vh;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 20px;
+}
+
+.sidebar ul li {
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #34495e;
+}
+
+.main-content {
+    flex-grow: 1;
+    padding: 20px;
+}
+
+.header h1 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+}
+
+.security {
+    text-align: center;
+}
+
+.shield-icon {
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+.shield-icon img {
+    width: 50px; /* 실제 이미지 크기에 맞게 조정하세요 */
+}
+
+.footer {
+    background-color: #2c3e50;
+    color: white;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 10px;
+}
