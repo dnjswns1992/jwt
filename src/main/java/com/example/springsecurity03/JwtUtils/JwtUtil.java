@@ -1,16 +1,15 @@
 package com.example.springsecurity03.JwtUtils;
 
-import com.example.springsecurity03.Jpa.Account;
-import com.example.springsecurity03.Jpa.AccountDto;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
+import jakarta.servlet.http.HttpServletResponse;
 
 import javax.crypto.SecretKey;
 import java.util.Date;
 
-public class JwtCreate {
+public class JwtUtil {
 
     private final static SecretKey key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
 
@@ -23,4 +22,8 @@ public class JwtCreate {
                 .setExpiration(new Date(System.currentTimeMillis() + (60000 * 30 * 24)))
                 .signWith(key).compact();
     }
+    public static Claims getUsername(String token , HttpServletResponse response){
+        return Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token).getBody();
+    }
+
 }

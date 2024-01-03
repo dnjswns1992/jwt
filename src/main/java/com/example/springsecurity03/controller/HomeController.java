@@ -12,6 +12,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
@@ -57,7 +58,9 @@ public class HomeController {
 	}
 	@ResponseBody
 	@GetMapping("/user/test")
-	public String userTest(){
+	public String userTest(Authentication authentication){
+		UserDetails principal = (UserDetails) authentication.getPrincipal();
+		log.info("유저 네임 = {}",principal.getUsername());
 		return "UserTest";
 	}
 	@ResponseBody

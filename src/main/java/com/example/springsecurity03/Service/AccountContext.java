@@ -14,7 +14,7 @@ import java.util.Set;
 public class AccountContext implements UserDetails {
 
     private final Account account;
-    AccountContext(Account account){
+    public AccountContext(Account account){
         this.account = account;
     }
 

@@ -1,12 +1,9 @@
-package com.example.springsecurity03.Handler;
+package com.example.springsecurity03.Filter;
 
 import com.example.springsecurity03.Jpa.Account;
 import com.example.springsecurity03.Jpa.AccountDto;
-import com.example.springsecurity03.JwtUtils.JwtCreate;
+import com.example.springsecurity03.JwtUtils.JwtUtil;
 import com.example.springsecurity03.Repository.UserRepository;
-import com.example.springsecurity03.Service.AccountContext;
-import com.example.springsecurity03.Service.CustomUserDetailsService;
-import com.example.springsecurity03.Service.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -63,7 +60,7 @@ public class UserCheckFilter extends UsernamePasswordAuthenticationFilter {
 
         log.info("클래스 확인 = {}",authResult.getPrincipal());
         UserDetails principal = (UserDetails) authResult.getPrincipal();
-        String jwtToken = JwtCreate.createJwt(principal.getPassword(),principal.getPassword());
+        String jwtToken = JwtUtil.createJwt(principal.getUsername(),principal.getPassword());
         Account byUsername = repository.findByUsername(principal.getUsername());
 
         if(byUsername != null) {
